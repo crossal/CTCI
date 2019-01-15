@@ -29,20 +29,29 @@ public class Question1 {
     }
 
     public static void removeDuplicatesDoublyLinked(Node n) {
-        if (n == null) {
-            return;
-        }
-
         Set<Integer> values = new HashSet<>();
-        values.add(n.getValue());
 
-        while (n.getNext() != null) {
-            n = n.getNext();
+        while (n != null) {
             if (values.contains(n.getValue())) {
                 n.getPrev().setNext(n.getNext());
             } else {
                 values.add(n.getValue());
             }
+            n = n.getNext();
+        }
+    }
+
+    public static void removeDuplicatesNoBuffer(Node n) {
+        while (n != null) {
+            Node runner = n;
+            while (runner.getNext() != null) {
+                if (runner.getNext().getValue() == n.getValue()) {
+                    runner.setNext(runner.getNext().getNext());
+                    break;
+                }
+                runner = runner.getNext();
+            }
+            n = n.getNext();
         }
     }
 
@@ -67,6 +76,17 @@ public class Question1 {
 
         System.out.print("removeDuplicatesDoublyLinked(" + headB.fullNodeString() + "): ");
         removeDuplicatesDoublyLinked(headB);
+        System.out.println(headB.fullNodeString());
+
+        head = generateListA();
+        headB = generateListB();
+
+        System.out.print("removeDuplicatesNoBuffer(" + head.fullNodeString() + "): ");
+        removeDuplicatesNoBuffer(head);
+        System.out.println(head.fullNodeString());
+
+        System.out.print("removeDuplicatesNoBuffer(" + headB.fullNodeString() + "): ");
+        removeDuplicatesNoBuffer(headB);
         System.out.println(headB.fullNodeString());
     }
 

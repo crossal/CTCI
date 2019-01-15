@@ -2,10 +2,8 @@ package Chapter2;
 
 import org.junit.Test;
 
-import static Chapter2.Question1.removeDuplicates;
-import static Chapter2.Question1.removeDuplicatesDoublyLinked;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static Chapter2.Question1.*;
+import static org.junit.Assert.*;
 
 public class Question1Test {
 
@@ -61,6 +59,35 @@ public class Question1Test {
     public void removeDuplicatesDoublyLinked_noDuplicates_doesNothing() {
         Node head = generateLinkedListWithNoDuplicates();
         removeDuplicatesDoublyLinked(head);
+        assertEquals(1, head.getValue());
+        assertEquals(2, head.getNext().getValue());
+        assertNull(head.getNext().getNext());
+    }
+    //endregion
+
+    //region Test removeDuplicatesNoBuffer
+    @Test
+    public void removeDuplicatesNoBuffer_hasDuplicates_removesDuplicates() {
+        Node head = generateLinkedListWithDuplicates();
+        removeDuplicatesNoBuffer(head);
+        assertEquals(1, head.getValue());
+        assertEquals(2, head.getNext().getValue());
+        assertEquals(3, head.getNext().getNext().getValue());
+        assertNull(head.getNext().getNext().getNext());
+    }
+
+    @Test
+    public void removeDuplicatesNoBuffer_onlyDuplicates_removesDuplicates() {
+        Node head = generateLinkedListWithOnlyDuplicates();
+        removeDuplicatesNoBuffer(head);
+        assertEquals(1, head.getValue());
+        assertNull(head.getNext());
+    }
+
+    @Test
+    public void removeDuplicatesNoBuffer_noDuplicates_doesNothing() {
+        Node head = generateLinkedListWithNoDuplicates();
+        removeDuplicatesNoBuffer(head);
         assertEquals(1, head.getValue());
         assertEquals(2, head.getNext().getValue());
         assertNull(head.getNext().getNext());
