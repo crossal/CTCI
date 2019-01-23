@@ -27,7 +27,7 @@ public class Question3Test {
 
     @Test
     public void areStringsPermutations_emptyStrings_returnsTrue() {
-        assertFalse(areStringsPermutations("", ""));
+        assertTrue(areStringsPermutations("", ""));
     }
 
     @Test
@@ -37,6 +37,6 @@ public class Question3Test {
 
     @Test
     public void areStringsPermutations_arePermutations_returnsTrue() {
-        assertTrue(areStringsPermutations(string, differentString));
+        assertTrue(areStringsPermutations(string, string));
     }
 }
