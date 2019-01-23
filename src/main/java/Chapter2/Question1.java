@@ -10,7 +10,7 @@ public class Question1 {
             return;
         }
 
-        Set<Integer> values = new HashSet<>();
+        Set<Object> values = new HashSet<>();
 
         values.add(n.getValue());
         while (n != null && n.getNext() != null) {
@@ -29,7 +29,7 @@ public class Question1 {
     }
 
     public static void removeDuplicatesDoublyLinked(Node n) {
-        Set<Integer> values = new HashSet<>();
+        Set<Object> values = new HashSet<>();
 
         while (n != null) {
             if (values.contains(n.getValue())) {

@@ -1,19 +1,19 @@
 package Chapter2;
 
 public class Node {
-    private int value;
+    private Object value;
     private Node next;
     private Node prev;
 
-    public Node(int value) {
+    public Node(Object value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public Object getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(Object value) {
         this.value = value;
     }
 
@@ -35,11 +35,11 @@ public class Node {
 
     public String fullNodeString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Integer.toString(value));
+        sb.append(value);
         Node node = this;
         while (node.getNext() != null) {
             node = node.getNext();
-            sb.append("->" + Integer.toString(node.getValue()));
+            sb.append("->" + node.getValue());
         }
 
         return sb.toString();
